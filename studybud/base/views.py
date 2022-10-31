@@ -6,5 +6,10 @@ rooms = [{'id':1, 'name': 'learn python'}, {'id':2, 'name': 'design'}, {'id':3, 
 def home(request):
     return render(request, 'home.html', {'rooms':rooms})
 
-def room(request):
-    return render(request, 'room.html')
+def room(request, id):
+    room = None
+    for room in rooms:
+        if room['id'] == int(id):
+            render_room = room
+    context = {'room': render_room}
+    return render(request, 'room.html', context)
